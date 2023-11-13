@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user',
@@ -10,8 +11,12 @@ import { Subscription } from 'rxjs/Subscription';
 export class UserComponent implements OnInit, OnDestroy {
   user: { id: number; name: string };
   paramsSubscription: Subscription;
+  isActive: boolean = false;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.user = {
@@ -23,9 +28,21 @@ export class UserComponent implements OnInit, OnDestroy {
       this.user.id = params['id'];
       this.user.name = params['name'];
     });
+
+    this.userService.activateUser.subscribe((data: boolean) => {
+      this.isActive = data;
+    });
   }
 
   ngOnDestroy(): void {
     this.paramsSubscription.unsubscribe();
+  }
+
+  activateUser() {
+    this.userService.activateUser.next(true);
+  }
+
+  onDeactivate() {
+    this.userService.activateUser.next(false);
   }
 }

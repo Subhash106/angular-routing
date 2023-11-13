@@ -1,5 +1,13 @@
 <p>User with ID {{ user?.id }} loaded.</p>
 <p>User name is {{ user?.name }}</p>
+<div *ngIf="isActive; else activate">
+  <p>Activated</p>
+  <button class="btn btn-danger" (click)="onDeactivate()">De-Activate</button>
+</div>
 <hr />
 
 <a [routerLink]="['/users', 10, 'Subash']">Load Subash (10)</a>
+<br />
+<ng-template #activate>
+  <button class="btn btn-success" (click)="activateUser()">Activate</button>
+</ng-template>
