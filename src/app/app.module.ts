@@ -13,6 +13,7 @@ import { ServersService } from './servers/servers.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth.service';
 import { AuthGaurd } from './auth-gaurd.service';
+import { FormsComponent } from './forms/forms.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthGaurd } from './auth-gaurd.service';
     UserComponent,
     EditServerComponent,
     ServerComponent,
+    FormsComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [ServersService, AuthService, AuthGaurd],
