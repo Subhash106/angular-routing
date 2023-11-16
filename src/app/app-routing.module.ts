@@ -4,6 +4,7 @@ import { AuthGaurd } from './auth-gaurd.service';
 import { FormsComponent } from './forms/forms.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
 import { ServerComponent } from './servers/server/server.component';
 import { ServersComponent } from './servers/servers.component';
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
     ],
   },
   { path: 'forms', component: FormsComponent },
+  { path: 'forms-reactive', component: ReactiveFormsComponent },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
 ];
