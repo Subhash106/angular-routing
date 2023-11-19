@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -17,6 +17,8 @@ import { AuthGaurd } from './auth-gaurd.service';
 import { FormsComponent } from './forms/forms.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { StudentsComponent } from './students/students.component';
+import { AuthInterceptorService } from './auth.interceptor.service';
+import { LoggingInterceptorService } from './logging.interceptor.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,21 @@ import { StudentsComponent } from './students/students.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ServersService, AuthService, AuthGaurd],
+  providers: [
+    ServersService,
+    AuthService,
+    AuthGaurd,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

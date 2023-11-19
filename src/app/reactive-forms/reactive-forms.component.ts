@@ -11,6 +11,7 @@ import { StudentService } from '../students/student.service';
   styleUrls: ['./reactive-forms.component.css'],
 })
 export class ReactiveFormsComponent implements OnInit {
+  error = null;
   answer: string = '';
   signupForm: FormGroup;
   formSubmitted: boolean = false;
@@ -29,6 +30,9 @@ export class ReactiveFormsComponent implements OnInit {
   constructor(private studentService: StudentService, private router: Router) {}
 
   ngOnInit(): void {
+    this.studentService.errorSubject.subscribe((error: Error) => {
+      this.error = error.message;
+    });
     this.signupForm = new FormGroup({
       username: new FormControl(null, [
         Validators.required,
