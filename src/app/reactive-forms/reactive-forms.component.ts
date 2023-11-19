@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { StudentService } from '../students/student.service';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -23,7 +26,7 @@ export class ReactiveFormsComponent implements OnInit {
     gender: string;
   } = { username: '', email: '', secret: '', answer: '', gender: '' };
 
-  constructor() {}
+  constructor(private studentService: StudentService, private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -46,7 +49,8 @@ export class ReactiveFormsComponent implements OnInit {
   suggestUsername() {}
 
   onSubmit() {
-    console.log(this.signupForm);
+    console.log(this.signupForm.value);
+    this.studentService.createStudent(this.signupForm.value);
   }
 
   addHobby() {
@@ -73,5 +77,9 @@ export class ReactiveFormsComponent implements OnInit {
         }
       }, 1500);
     });
+  }
+
+  goToAllStudents() {
+    this.router.navigate(['/students']);
   }
 }

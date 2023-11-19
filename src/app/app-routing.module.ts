@@ -8,6 +8,7 @@ import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.componen
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
 import { ServerComponent } from './servers/server/server.component';
 import { ServersComponent } from './servers/servers.component';
+import { StudentsComponent } from './students/students.component';
 import { UserComponent } from './users/user/user.component';
 import { UsersComponent } from './users/users.component';
 
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   },
   { path: 'forms', component: FormsComponent },
   { path: 'forms-reactive', component: ReactiveFormsComponent },
+  { path: 'students', component: StudentsComponent },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
 ];

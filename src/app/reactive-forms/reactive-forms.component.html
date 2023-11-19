@@ -1,3 +1,8 @@
+<h1>Add Student</h1>
+<hr />
+<button class="btn btn-primary" (click)="goToAllStudents()">
+  All Students
+</button>
 <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="username">Username</label>
@@ -88,7 +93,9 @@
   </div>
   <div formArrayName="hobbies" class="mt-3 mb-3">
     <h3>Your hobbies</h3>
-    <button class="btn btn-default" (click)="addHobby()">Add Hobby</button>
+    <button class="btn btn-default" type="button" (click)="addHobby()">
+      Add Hobby
+    </button>
     <div
       class="form-group"
       *ngFor="let hobby of signupForm.get('hobbies')['controls']; let i = index"
